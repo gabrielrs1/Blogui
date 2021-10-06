@@ -17,5 +17,6 @@ router.delete("/category/:id", categoryController.delete);
 router.post("/post", postController.create);
 router.get("/post", postController.show);
 router.put("/post", postController.update);
+router.delete("/post/:id", postController.delete);
 
 export { router }

@@ -46,7 +46,7 @@ class PostController {
         const postAlreadyExists = await postRepository.findOne(id);
 
         if(!postAlreadyExists) {
-            return response.status(404).json({ message: "Post not exist" });
+            return response.status(404).json({ message: "Post not found" });
         }
 
         await postRepository.update(id, {
@@ -56,6 +56,22 @@ class PostController {
         });
 
         return response.status(200).json({ message: "Updated post" });
+    }
+
+    async delete(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const postRepository = getCustomRepository(PostRepository);
+
+        const postAlreadyExists = await postRepository.findOne(id);
+
+        if(!postAlreadyExists) {
+            return response.status(404).json({ message: "Post not found" });
+        }
+
+        await postRepository.delete(id);
+
+        return response.status(200).json({ message: "Deleted post" });
     }
 }
 
