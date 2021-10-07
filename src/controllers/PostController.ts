@@ -9,14 +9,10 @@ class PostController {
         const postRepository = getCustomRepository(PostRepository);
 
         // procura pelo titulo
-        const postTitleAlreadyExists = await postRepository.find({
-            where: {
-                title
-            }
-        });
+        const postTitleAlreadyUses = await postRepository.findOne({ title });
 
-        if(postTitleAlreadyExists[0]?.title == title) {
-            return response.status(400).json({ message: "Title already exists" });
+        if(postTitleAlreadyUses) {
+            return response.status(400).json({ message: "Title already used" });
         }
 
         const post = postRepository.create({
@@ -30,7 +26,7 @@ class PostController {
         return response.status(201).json(post);
     }
 
-    async show(request: Request, response: Response) {
+    async showAll(request: Request, response: Response) {
         const postRepository = getCustomRepository(PostRepository);
 
         const posts = await postRepository.find();
