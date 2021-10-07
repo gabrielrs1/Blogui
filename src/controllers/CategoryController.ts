@@ -23,7 +23,7 @@ class CategoryController {
         return response.status(201).json({ category });
     }
 
-    async show(request: Request, response: Response) {
+    async showAll(request: Request, response: Response) {
         const categoryRepository = getCustomRepository(CategoryRepository);
 
         const category = await categoryRepository.find();
