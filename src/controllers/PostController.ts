@@ -9,9 +9,9 @@ class PostController {
         const postRepository = getCustomRepository(PostRepository);
 
         // procura pelo titulo
-        const postTitleAlreadyUses = await postRepository.findOne({ title });
+        const titlePostAlreadyUsed = await postRepository.findOne({ title });
 
-        if(postTitleAlreadyUses) {
+        if(titlePostAlreadyUsed) {
             return response.status(400).json({ message: "Title already used" });
         }
 

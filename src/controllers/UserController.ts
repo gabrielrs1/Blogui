@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../repositories/UserRepository"
 import * as bcrypt from 'bcrypt';
+import * as jwt from "jsonwebtoken";
 
 class UserController {
     async signUp(request: Request, response: Response) {
@@ -45,7 +46,11 @@ class UserController {
             return response.status(400).json({ message: "Incorrect password" });
         }
 
-        return response.status(200).redirect("/");
+        const user = userAlreadyExist.id;
+
+        const token = jwt.sign({ user }, process.env.SECRET_TOKEN, { expiresIn: '3h' });
+
+        return response.status(200).json({ token });
     }
 }
 
