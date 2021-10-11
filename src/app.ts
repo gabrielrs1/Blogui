@@ -8,8 +8,4 @@ const app = express();
 app.use(express.json())
 app.use(router);
 
-app.get("/", (request: Request, response: Response) => {
-    return response.send("Ok");
-})
-
 export { app };
