@@ -14,13 +14,13 @@ const userMiddleware = new UserMiddleware();
 
 // Category
 router.post("/category", userMiddleware.middleware, categoryController.create);
-router.get("/category", categoryController.showAll);
+router.get("/categorys", categoryController.showAll);
 router.put("/category", userMiddleware.middleware, categoryController.update);
 router.delete("/category/:id", userMiddleware.middleware, categoryController.delete);
 
 // Post
 router.post("/post", userMiddleware.middleware, postController.create);
-router.get("/post", postController.showAll);
+router.get("/posts", postController.showAll);
 router.put("/post", userMiddleware.middleware, postController.update);
 router.delete("/post/:id", userMiddleware.middleware, postController.delete);
 
