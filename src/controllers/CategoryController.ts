@@ -48,7 +48,7 @@ class CategoryController {
     }
 
     async delete(request: Request, response: Response) {
-        const { id } = request.params;
+        const { id } = request.body;
 
         const categoryRepository = getCustomRepository(CategoryRepository);
 

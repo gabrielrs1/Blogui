@@ -55,7 +55,7 @@ class PostController {
     }
 
     async delete(request: Request, response: Response) {
-        const { id } = request.params;
+        const { id } = request.body;
 
         const postRepository = getCustomRepository(PostRepository);
 
